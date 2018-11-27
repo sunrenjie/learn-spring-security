@@ -1,8 +1,9 @@
 
-# About this repo
+## Module 1 - Secure a ﻿﻿Simple﻿﻿ Spring MVC Application
+This is the codebase for Module 1 of [Learn Spring Security](http://bit.ly/github-lss)
 
-This is the codebase of the Learn Spring Security course. <br/><br/>
-If you're already a student of the course - you can start exploring this through the lesson notes in the course. <br/>
-If you're not a student, you can get access to the course here: http://bit.ly/github-lss <br/>
- <br/> <br/>
 
+## Non-Standard Modules
+
+_m1-lesson6-noboot_ 
+- is the version of _m1-lesson6_ that  doesn't use Spring Boot
