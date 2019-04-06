@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.vote.AuthenticatedVoter;
@@ -13,13 +14,15 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.expression.WebExpressionVoter;
 
 import com.baeldung.lss.security.RealTimeLockVoter;
 import com.google.common.collect.Lists;
 
 @EnableWebSecurity
+@Configuration
 public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
 
     public LssSecurityConfig() {
@@ -31,9 +34,9 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception { // @formatter:off 
         auth.
-            inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance())
-            .withUser("user").password("pass").roles("USER").and()
-            .withUser("admin").password("pass").roles("ADMIN")
+            inMemoryAuthentication().passwordEncoder(passwordEncoder())
+            .withUser("user").password(passwordEncoder().encode("pass")).roles("USER").and()
+            .withUser("admin").password(passwordEncoder().encode("pass")).roles("ADMIN")
             ;
     } // @formatter:on
 
@@ -64,6 +67,11 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
     public AccessDecisionManager unnanimous(){
         final List<AccessDecisionVoter<? extends Object>> voters = Lists.newArrayList(new RoleVoter(), new AuthenticatedVoter(), new RealTimeLockVoter(), new WebExpressionVoter());
         return new UnanimousBased(voters);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }
