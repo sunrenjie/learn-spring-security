@@ -3,13 +3,15 @@ package com.baeldung.lss.spring;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.baeldung.lss.model.User;
 import com.baeldung.lss.persistence.UserRepository;
@@ -37,14 +39,14 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
         if (userRepository.findByEmail("test@email.com") == null) {
             final User user = new User();
             user.setEmail("test@email.com");
-            user.setPassword("pass");
+            user.setPassword(passwordEncoder().encode("pass"));
             userRepository.save(user);
         }
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {// @formatter:off
-        auth.userDetailsService(userDetailsService).passwordEncoder(NoOpPasswordEncoder.getInstance());
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     } // @formatter:on
 
     @Override
@@ -67,5 +69,10 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
         .csrf().disable()
         ;
     } // @formatter:on
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 }

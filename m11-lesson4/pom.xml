@@ -76,13 +76,6 @@ Module  11 - Lesson 4</description>
             <version>2.6.11</version>
         </dependency>
 
-        <!-- marshalling -->
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-
         <!-- Password Validation -->
         <dependency>
             <groupId>org.passay</groupId>
@@ -134,17 +127,8 @@ Module  11 - Lesson 4</description>
             <version>${guava.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-
         <!-- logging -->
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -161,29 +145,6 @@ Module  11 - Lesson 4</description>
         </dependency>
 
         <!-- test scoped -->
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-library</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <scope>test</scope>
-        </dependency>
         
         <dependency>
             <groupId>com.jayway.restassured</groupId>
@@ -196,12 +157,6 @@ Module  11 - Lesson 4</description>
                     <groupId>commons-logging</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>            
-            <scope>test</scope>            
         </dependency>
 
         <dependency>
@@ -283,15 +238,10 @@ Module  11 - Lesson 4</description>
 		<!-- password validation -->
         <passay.version>1.0</passay.version>
         
-        <!-- persistence -->       
-        <validation-api.version>1.1.0.Final</validation-api.version>
-  
         <rest-assured.version>2.8.0</rest-assured.version>
 		
         <!-- maven plugins -->
 		<maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
-		<maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
-		<maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>		
 		
     </properties>
 
