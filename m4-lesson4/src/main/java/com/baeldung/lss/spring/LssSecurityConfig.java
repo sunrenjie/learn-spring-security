@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@ComponentScan({ "org.baeldung.lss.security" })
+@ComponentScan({ "com.baeldung.lss.security" })
 @EnableWebSecurity
 public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
