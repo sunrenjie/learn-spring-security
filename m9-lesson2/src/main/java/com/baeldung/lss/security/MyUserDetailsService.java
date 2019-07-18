@@ -10,8 +10,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.baeldung.lss.persistence.UserRepository;
@@ -38,7 +36,7 @@ public class MyUserDetailsService implements UserDetailsService {
                 throw new UsernameNotFoundException("No user found with email: " + email);
             }
 
-            return new org.springframework.security.core.userdetails.User(user.getEmail(), passwordEncoder().encode(user.getPassword()), true, true, true, true, getAuthorities(user.getRoles()));
+            return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), true, true, true, true, getAuthorities(user.getRoles()));
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }
@@ -49,10 +47,4 @@ public class MyUserDetailsService implements UserDetailsService {
     public final Collection<? extends GrantedAuthority> getAuthorities(final Collection<Role> roles) {
         return roles.stream().flatMap(role -> role.getPrivileges().stream()).map(p -> new SimpleGrantedAuthority(p.getName())).collect(Collectors.toList());
     }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
 }
