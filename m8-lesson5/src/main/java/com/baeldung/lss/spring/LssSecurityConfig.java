@@ -80,9 +80,9 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
+
     @Bean
-    public static ServletListenerRegistrationBean httpSessionEventPublisher() {	//(5)
+    public static ServletListenerRegistrationBean httpSessionEventPublisher() { // (5)
         return new ServletListenerRegistrationBean(new HttpSessionEventPublisher());
     }
 }
