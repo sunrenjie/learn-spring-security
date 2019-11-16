@@ -10,7 +10,6 @@ import com.jayway.restassured.authentication.FormAuthConfig;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
 
-
 /**
  * This LiveTest requires:
  * * a MySql server running in the environment(e.g. `docker run -p 3306:3306 --name bael-mysql-57 -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_USER=tutorialuser -e MYSQL_PASSWORD=tutorialmy5ql -e MYSQL_DATABASE=lss114 mysql:latest`)
@@ -25,14 +24,18 @@ public class LiveTest {
     public void givenOwnerUser_whenGetPossession_thenOK() {
         final Response response = givenAuth("eugen@email.com", "pass").get(APP_ROOT + "/possessions/2");
         assertEquals(200, response.getStatusCode());
-        assertThat(response.body().jsonPath().getLong("id")).isEqualTo(2L);
+        assertThat(response.body()
+            .jsonPath()
+            .getLong("id")).isEqualTo(2L);
     }
 
     @Test
     public void givenUserWithReadPermission_whenGetPossession_thenOK() {
         final Response response = givenAuth("eric@email.com", "123").get(APP_ROOT + "/possessions/2");
         assertEquals(200, response.getStatusCode());
-        assertThat(response.body().jsonPath().getLong("id")).isEqualTo(2L);
+        assertThat(response.body()
+            .jsonPath()
+            .getLong("id")).isEqualTo(2L);
     }
 
     @Test
@@ -43,6 +46,8 @@ public class LiveTest {
 
     //
     private RequestSpecification givenAuth(String username, String password) {
-        return RestAssured.given().auth().form(username, password, formAuthConfig);
+        return RestAssured.given()
+            .auth()
+            .form(username, password, formAuthConfig);
     }
 }

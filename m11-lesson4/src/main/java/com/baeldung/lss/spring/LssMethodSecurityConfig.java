@@ -35,16 +35,16 @@ public class LssMethodSecurityConfig extends GlobalMethodSecurityConfiguration {
 
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
-    
+
     @Value("${spring.datasource.url}")
     private String dataSourceURL;
-    
+
     @Value("${spring.datasource.username}")
     private String dataSourceUserName;
-    
+
     @Value("${spring.datasource.password}")
     private String dataSourcePassword;
-    
+
     @Override
     protected MethodSecurityExpressionHandler createExpressionHandler() {
         final DefaultMethodSecurityExpressionHandler expressionHandler = new DefaultMethodSecurityExpressionHandler();
@@ -79,7 +79,8 @@ public class LssMethodSecurityConfig extends GlobalMethodSecurityConfiguration {
         final EhCacheFactoryBean factoryBean = new EhCacheFactoryBean();
         final EhCacheManagerFactoryBean cacheManager = new EhCacheManagerFactoryBean();
         cacheManager.setAcceptExisting(true);
-        cacheManager.setCacheManagerName(CacheManager.getInstance().getName());
+        cacheManager.setCacheManagerName(CacheManager.getInstance()
+            .getName());
         cacheManager.afterPropertiesSet();
 
         factoryBean.setName("aclCache");

@@ -38,7 +38,8 @@ public class PossessionController {
     @ResponseBody
     @PostAuthorize("hasPermission(returnObject, 'READ') or hasPermission(returnObject, 'ADMINISTRATION')")
     public Possession findOne(@PathVariable("id") final Long id) {
-        return possessionRepository.findById(id).orElse(null);
+        return possessionRepository.findById(id)
+            .orElse(null);
     }
 
     @RequestMapping(method = RequestMethod.POST)

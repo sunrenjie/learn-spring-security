@@ -14,7 +14,7 @@ import com.baeldung.lss.validation.ValidPassword;
 
 @Entity
 @PasswordMatches
-@Table(name="users")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -131,7 +131,11 @@ public class User {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("User [id=").append(id).append(", email=").append(email).append("]");
+        builder.append("User [id=")
+            .append(id)
+            .append(", email=")
+            .append(email)
+            .append("]");
         return builder.toString();
     }
 
