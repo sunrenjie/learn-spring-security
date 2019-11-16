@@ -22,27 +22,30 @@ import com.baeldung.lss.spring.LssApp3;
 @SpringBootTest(classes = { LssApp3.class })
 public class Lss3IntegrationTest {
 
-	private MockMvc mockMvc;
+    private MockMvc mockMvc;
 
-	@Autowired
-	private WebApplicationContext context;
+    @Autowired
+    private WebApplicationContext context;
 
-	@Autowired
-	private Filter springSecurityFilterChain;
+    @Autowired
+    private Filter springSecurityFilterChain;
 
-	@Before
-	public void setup() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(context).addFilters(springSecurityFilterChain).build();
-	}
+    @Before
+    public void setup() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(context)
+            .addFilters(springSecurityFilterChain)
+            .build();
+    }
 
-	@Test
-	public void testUserLoginSuccess() throws Exception {
-		ResultActions resultActions = mockMvc.perform(formLogin("/doLogin").user("user").password("pass"));
-		resultActions.andExpect(authenticated());
-	}
+    @Test
+    public void testUserLoginSuccess() throws Exception {
+        ResultActions resultActions = mockMvc.perform(formLogin("/doLogin").user("user")
+            .password("pass"));
+        resultActions.andExpect(authenticated());
+    }
 
-	@Test
-	public void whenLoadApplication_thenSuccess() {
+    @Test
+    public void whenLoadApplication_thenSuccess() {
 
-	}
+    }
 }
