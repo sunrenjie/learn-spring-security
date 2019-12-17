@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <description>The &quot;Learn Spring Security OAuth&quot; Course: Using the Authorization Code Flow in OAuth2 - End</description>
+    <name>using-authorization-code-flow-end</name>
+
+    <groupId>com.baeldung</groupId>
+    <artifactId>using-authorization-code-flow-end</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>using-authorization-code-flow-end--client</module>
+        <module>using-authorization-code-flow-end--server</module>
+    </modules>
+
+</project>
