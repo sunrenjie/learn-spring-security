@@ -6,12 +6,12 @@
 <body>
 	<h1 layout:fragment="header">Users : Create</h1>
 	<div layout:fragment="content" class="container">
-		<form id="userForm" th:action="@{/(form)}" th:object="${user}" action="#" method="post">
+		<form id="userForm" th:action="@{/users/create}" th:object="${user}" action="#" method="post">
 			<div th:if="${#fields.hasErrors('*')}" class="alert alert-error">
 				<p th:each="error : ${#fields.errors('*')}" th:text="${error}">Validation error</p>
 			</div>
 			<div class="pull-right">
-				<a th:href="@{/}" href="users.html"> Users </a>
+				<a th:href="@{/users}" href="users.html"> Users </a>
 			</div>
 			<input type="hidden" th:field="*{id}" th:class="${#fields.hasErrors('id')} ? 'field-error'" /> <label for="username">Username</label> <input type="text" th:field="*{username}"
 				th:class="${#fields.hasErrors('username')} ? 'field-error'" /> <label for="email">Email</label> <input type="email" th:field="*{email}"
