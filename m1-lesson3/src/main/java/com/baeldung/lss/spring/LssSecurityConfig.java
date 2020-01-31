@@ -22,7 +22,7 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception { // @formatter:off
         http
                 .authorizeRequests()
-                .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/webjars/**", "/css/**", "/js/**", "/img/**", "/favicon.ico").permitAll()
                 .antMatchers("/delete/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
 

@@ -79,10 +79,10 @@
       <div class="navbar navbar-inverse navbar-static-top">
         <div class="navbar-inner">
           <div class="container">
-            <a class="brand" th:href="@{/}"><img th:src="@{/resources/img/logo.png}" alt="Spring Security Sample"/></a>
+            <a class="brand" th:href="@{/}"><img th:src="@{/img/logo.png}" alt="Spring Security Sample"/></a>
             <div class="nav-collapse collapse">
               <div th:if="${#httpServletRequest.remoteUser != null}">
-                  <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
+                  <form class="navbar-form pull-right" th:action="@{/auth/logout}" method="post">
                       <input type="submit" value="Log out" />
                   </form>
                   <p class="navbar-text pull-right" th:text="${#httpServletRequest.remoteUser}">
