@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:include="layout_messages :: head(title=~{::title},links=~{})">
+    <title>To logout</title>
+</head>
+<body th:include="layout_messages :: body" th:with="content=~{::content}">
+<div th:fragment="content">
+    <form name="f" th:action="@{/auth/logout}" method="post">
+        <h1>Really want to logout?</h1>
+    </form>
+</div>
+</body>
+</html>

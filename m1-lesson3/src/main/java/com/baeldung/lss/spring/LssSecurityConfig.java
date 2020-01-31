@@ -22,11 +22,15 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception { // @formatter:off
         http
                 .authorizeRequests()
+                .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/delete/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
+
                 .and()
-                .formLogin().and()
-                .httpBasic();
-    }
+                .formLogin().loginPage("/auth/login").permitAll().and()
+                .logout().logoutUrl("/auth/logout")
+        ;
+    } // @formatter:on
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception { // @formatter:off 

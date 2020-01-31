@@ -64,6 +64,12 @@ Module  1 - Lesson 3</description>
             <artifactId>log4j-over-slf4j</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
         <!-- test scoped -->
 		 <dependency>
 		     <groupId>org.springframework.boot</groupId>
